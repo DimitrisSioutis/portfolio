@@ -1,27 +1,51 @@
 "use client"
-import { useState, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+import { useState, useEffect, useRef } from "react";
 import About from "./components/About";
 import Brackets from "./components/Brackets";
 import Experience from "./components/Experience";
 import Nav from "./components/Nav";
 
-export default function Home() {
+// Custom hook to replace react-intersection-observer
+const useIntersectionObserver = (options = {}) => {
+  const [inView, setInView] = useState(false);
+  const ref = useRef(null);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      setInView(entry.isIntersecting);
+    }, { threshold: options.threshold || 0 });
+
+    const currentRef = ref.current;
+    
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [options.threshold]);
+
+  return { ref, inView };
+};
+
+export default function Home() {
   const [activeSection, setActiveSection] = useState<string>("about");
 
-  const { ref: aboutRef, inView: aboutInView } = useInView({ threshold: 0 });
-  const { ref: experienceRef, inView: experienceInView } = useInView({ threshold: 0 });
-  // const { ref: projectsRef, inView: projectsInView } = useInView({ threshold: 0 });
+  const { ref: aboutRef, inView: aboutInView } = useIntersectionObserver({ threshold: 0 });
+  const { ref: experienceRef, inView: experienceInView } = useIntersectionObserver({ threshold: 0 });
+  // const { ref: projectsRef, inView: projectsInView } = useIntersectionObserver({ threshold: 0 });
 
   useEffect(() => {
     if (aboutInView) setActiveSection("about");
     else if (experienceInView) setActiveSection("experience");
     // else if (projectsInView) setActiveSection("projects");
-  }, [aboutInView, experienceInView,]);
+  }, [aboutInView, experienceInView]);
 
   return (
-    <main className="lg:flex justify-center  lg:px-40 md:py-32  bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(15,23,42,1),rgba(2,6,23,0))]">
+    <main className="lg:flex justify-center lg:px-40 md:py-32 bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(15,23,42,1),rgba(2,6,23,0))]">
       <div className="min-w-[500px] flex-1">
         <Nav activeSection={activeSection} />
       </div>
@@ -44,6 +68,5 @@ export default function Home() {
       </div>
       <footer></footer>
     </main>
-
   );
 }
