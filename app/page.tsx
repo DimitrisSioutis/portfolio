@@ -5,15 +5,19 @@ import Brackets from "./components/Brackets";
 import Experience from "./components/Experience";
 import Nav from "./components/Nav";
 
-// Custom hook to replace react-intersection-observer
-const useIntersectionObserver = (options = {}) => {
+interface IntersectionOptions {
+  threshold?: number;
+}
+
+const useIntersectionObserver = (options: IntersectionOptions = {}) => {
   const [inView, setInView] = useState(false);
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement | null>(null);
+  const { threshold = 0 } = options;  // Destructure with default value
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       setInView(entry.isIntersecting);
-    }, { threshold: options.threshold || 0 });
+    }, { threshold });
 
     const currentRef = ref.current;
     
@@ -26,7 +30,7 @@ const useIntersectionObserver = (options = {}) => {
         observer.unobserve(currentRef);
       }
     };
-  }, [options.threshold]);
+  }, [threshold]);  // Use destructured threshold in dependency array
 
   return { ref, inView };
 };
