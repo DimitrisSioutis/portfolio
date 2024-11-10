@@ -2,20 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'archiaregular';
+  src: url('/archia-regular-webfont.eot'); /* Removed /public */
+  src: url('/archia-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/archia-regular-webfont.woff2') format('woff2'),
+       url('/archia-regular-webfont.woff') format('woff'),
+       url('/archia-regular-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #f1f5f9;
+  font-family: 'archiaregular';
 }
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+  width: 100%;
+}
+
+.bracket{
+  font-family: Consolas, 'Courier New', monospace;
+}
+
+section{
+  padding-bottom: 10rem;
+}
+
