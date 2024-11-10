@@ -4,7 +4,6 @@ import { useInView } from "react-intersection-observer";
 import About from "./components/About";
 import Brackets from "./components/Brackets";
 import Experience from "./components/Experience";
-
 import Nav from "./components/Nav";
 
 export default function Home() {
