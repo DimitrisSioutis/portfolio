@@ -7,7 +7,7 @@ import {
   CardContent,
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const Experience = () => {
 
@@ -38,10 +38,10 @@ const Experience = () => {
                     href={job.refer} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-slate-400 hover:text-teal-500 transition-colors"
+                    className="link inline-flex items-center gap-2 text-slate-400 hover:text-teal-500 transition-colors"
                   >
                     <span className="text-md font-medium">{job.company}</span>
-                    <ExternalLink className="h-4 w-4" />
+                    <ArrowUpRight className="h-4 w-4" strokeWidth={3} />
                   </a>
                 </div>
 

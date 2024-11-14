@@ -30,6 +30,11 @@ section {
   padding-bottom: 10rem;
 }
 
+.link:hover svg{
+  transition: 0.1s ease-in-out;
+  transform: translate(0.1rem,-0.1rem);
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
