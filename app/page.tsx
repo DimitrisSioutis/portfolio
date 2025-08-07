@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect} from "react";
 import { useInView } from "react-intersection-observer";
 import About from "./components/About";
 import Brackets from "./components/Brackets";
