@@ -18,6 +18,10 @@ body {
   font-family: 'archiaregular';
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -98,4 +102,12 @@ section {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+#about{
+  scroll-margin-top: 170px;
+}
+
+#experience {
+    scroll-margin-top: 50px;
 }

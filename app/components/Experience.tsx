@@ -12,7 +12,7 @@ import { ArrowUpRight } from "lucide-react";
 const Experience = () => {
 
   return (
-    <div className="space-y-6">
+    <div>
       {experience.map((job, index) => (
         <Card 
           key={index} 
